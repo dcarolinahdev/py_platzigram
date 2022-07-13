@@ -1,6 +1,9 @@
 # Platzigram app
 inspired by instagram app
 
+## Requirements and versions
+- ***Django=2.0.7***
+
 ---
 ---
 
