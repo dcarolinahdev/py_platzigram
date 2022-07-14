@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 # temp for hello world
 from platzigram import views
@@ -25,4 +25,6 @@ urlpatterns = [
     path('hi/<str:name>/<int:age>/', views.say_hi),
     path('sorted_ints/', views.sorted_ints),
     path('json_ints/', views.json_ints),
+    # posts urls
+    path('posts/', include('posts.urls')),
 ]
