@@ -2,7 +2,7 @@
 inspired by instagram app
 
 ## Requirements and versions
-- ***Django=2.0.7***
+- ***Django=2.1.5***
 
 ---
 ---
