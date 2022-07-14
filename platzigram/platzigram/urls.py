@@ -22,4 +22,6 @@ from platzigram import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello-world/', views.hello_world),
+    path('sorted_ints/', views.sorted_ints),
+    path('json_ints/', views.json_ints),
 ]
