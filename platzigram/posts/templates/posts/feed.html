@@ -1,6 +1,10 @@
-{% extends 'posts/base.html' %}
+{% extends 'base.html' %}
 
-{% block content %}
+{% block head_content %}
+    <title>Platzigram Feed</title>
+{% endblock %}
+
+{% block container %}
     {% for post in posts %}
         <div class="col-lg-4 offset-lg-4">
             <div class="media">
