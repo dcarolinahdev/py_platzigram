@@ -15,3 +15,6 @@ myvenv/
 env.bak/
 venv.bak/
 myvenv.bak/
+
+# files
+pictures/
