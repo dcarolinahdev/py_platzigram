@@ -1,0 +1,20 @@
+:root
+{
+    --gray-ultra-dark: #262626;
+    --blue-links-hover: #1d5e72;
+    --border-botton: rgba(0,0,0,.0975);
+}
+
+*
+{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    background: white;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
