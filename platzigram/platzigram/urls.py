@@ -30,6 +30,6 @@ urlpatterns = [
     path('sorted_ints/', views.sorted_ints, name='sorted_ints'),
     path('json_ints/', views.json_ints, name='json_ints'),
     # app urls
-    path('posts/', include('posts.urls')),
+    path('', include('posts.urls')),
     path('users/', include('users.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
