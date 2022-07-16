@@ -8,9 +8,8 @@ from .models import Profile
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
 
-    list_display = ('user', 'phone_number', 'website')
+    list_display = ('user', 'phone_number', 'website', 'picture')
     list_display_links = ('user',)
-    list_editable = ('phone_number',)
 
     search_fields = (
         'user__email',
