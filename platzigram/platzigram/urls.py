@@ -25,10 +25,10 @@ from platzigram import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # local urls
-    path('hello-world/', views.hello_world, name='hello'),
-    path('hi/<str:name>/<int:age>/', views.say_hi, name='hi'),
-    path('sorted_ints/', views.sorted_ints, name='sorted_ints'),
-    path('json_ints/', views.json_ints, name='json_ints'),
+    path('local/hello-world/', views.hello_world, name='hello'),
+    path('local/hi/<str:name>/<int:age>/', views.say_hi, name='hi'),
+    path('local/sorted_ints/', views.sorted_ints, name='sorted_ints'),
+    path('local/json_ints/', views.json_ints, name='json_ints'),
     # app urls
     path('', include('posts.urls')),
     path('users/', include('users.urls')),
