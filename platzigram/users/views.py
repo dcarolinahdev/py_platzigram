@@ -12,6 +12,7 @@ from .forms import SignupForm
 # Class based views
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, FormView, UpdateView
+from django.contrib.auth import views as auth_views
 
 # Views
 class SignupView(FormView):
@@ -26,19 +27,9 @@ class SignupView(FormView):
         form.save()
         return super().form_valid(form)
 
-def login_view(request):
+class LoginView(auth_views.LoginView):
     """Login view."""
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user:
-            login(request, user)
-            return redirect('posts:list_posts')
-        else:
-            return render(request, 'users/login.html', {'error': 'Invalid username and password'})
-
-    return render(request, 'users/login.html')
+    template_name = 'users/login.html'
 
 @login_required
 def logout_view(request):
