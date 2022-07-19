@@ -8,7 +8,7 @@ app_name = "users"
 urlpatterns = [
     # Posts
     path(
-        route='<str:username>/',
+        route='@<str:username>/',
         view=views.UserDetailView.as_view(template_name='users/detail.html'),
         name='detail'
     ),
