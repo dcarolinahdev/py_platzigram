@@ -31,11 +31,9 @@ class LoginView(auth_views.LoginView):
     """Login view."""
     template_name = 'users/login.html'
 
-@login_required
-def logout_view(request):
+class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     """Logout view."""
-    logout(request)
-    return redirect('users:login')
+    template_name = 'users/logout.html'
 
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     """Update profile view."""
