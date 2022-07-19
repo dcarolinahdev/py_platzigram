@@ -1,7 +1,7 @@
 # Django
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Models
@@ -10,24 +10,20 @@ from posts.models import Post
 # Forms
 from users.forms import ProfileForm, SignupForm
 # Class based views
-from django.views.generic import DetailView
+from django.views.generic import DetailView, FormView
 
 # Views
-def signup_view(request):
-    """Sign up view."""
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('users:login')
-    else:
-        form = SignupForm()
+class SignupView(FormView):
+    """Users sign up view."""
 
-    return render(
-        request=request,
-        template_name='users/signup.html',
-        context={'form': form}
-    )
+    template_name = 'users/signup.html'
+    form_class = SignupForm
+    success_url = reverse_lazy('users:login')
+
+    def form_valid(self, form):
+        """Save form data."""
+        form.save()
+        return super().form_valid(form)
 
 def login_view(request):
     """Login view."""
