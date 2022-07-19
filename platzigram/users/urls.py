@@ -11,7 +11,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('signup/', views.SignupView.as_view(), name='signup'),
 
-    path('me/profile/', views.update_profile, name='update_profile'),
+    path('me/profile/', views.UpdateProfileView.as_view(), name='update_profile'),
 
     # About posts user
     path(
