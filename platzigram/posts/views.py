@@ -1,20 +1,22 @@
 # Django
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView
 # Forms
 from .forms import PostForm
 # Models
 from .models import Post
 
-@login_required
-def list_posts(request):
-    """List existing posts"""
-    posts = Post.objects.all().order_by('-created')
+# Views
+class PostsListView(LoginRequiredMixin, ListView):
+    """Return all published posts."""
 
-    context = {
-        'posts': posts
-    }
-    return render(request, 'posts/feed.html', context)
+    template_name = 'posts/feed.html'
+    model = Post
+    ordering = ('-created',)
+    paginate_by = 2
+    context_object_name = 'posts'
 
 @login_required
 def create_post(request):
