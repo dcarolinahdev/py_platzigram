@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 # Forms
 from .forms import PostForm
 # Models
@@ -17,6 +17,13 @@ class PostsListView(LoginRequiredMixin, ListView):
     ordering = ('-created',)
     paginate_by = 2
     context_object_name = 'posts'
+
+class PostDetailView(LoginRequiredMixin, DetailView):
+    """Post detail view."""
+
+    template_name = 'post/detail.html'
+    queryset = Post.objects.all()
+    context_object_name = 'post'
 
 @login_required
 def create_post(request):
