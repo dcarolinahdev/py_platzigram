@@ -1,9 +1,15 @@
 # Django
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+# Models
+from django.contrib.auth.models import User
+from posts.models import Post
 # Forms
 from users.forms import ProfileForm, SignupForm
+# Class based views
+from django.views.generic import DetailView
 
 # Views
 def signup_view(request):
@@ -72,3 +78,19 @@ def update_profile(request):
             'form': form
         }
     )
+
+class UserDetailView(LoginRequiredMixin, DetailView):
+    """User detail view."""
+
+    template_name = 'users/detail.html'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+    queryset = User.objects.all()
+    context_object_name = 'user'
+
+    def get_context_data(self, **kwargs):
+        """Add user's posts to context."""
+        context = super().get_context_data(**kwargs)
+        user = self.get_object()
+        context['posts'] = Post.objects.filter(user=user).order_by('-created')
+        return context
